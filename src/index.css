@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", sans-serif;
+
+  --color-brand-orange: #ff6a00;
+  --color-bg-void: #0B0B0B;
+  --color-surface-dim: #121414;
+  --color-border-tonal: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  body {
+    @apply bg-bg-void text-zinc-100 font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tighter;
+  }
+
+  button, a, input, select, textarea {
+    transition: all 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  button:hover {
+    transform: translateY(-1px);
+  }
+
+  button:active {
+    transform: translateY(0);
+  }
+
+  .group-actions button:hover,
+  .group-actions button:active {
+    transform: none;
+  }
+}
+
+/* Custom Scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0B0B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+.tonal-border {
+  border: 1px solid var(--color-border-tonal);
+}
+
+.orange-gradient-glow {
+  background: radial-gradient(circle at center, rgba(255, 106, 0, 0.15) 0%, transparent 70%);
+}
+
+.interactive-card {
+  transition: transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 260ms ease, border-color 260ms ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(255, 106, 0, 0.12);
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.smooth-enter {
+  animation: smoothEnter 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.glass-panel {
+  backdrop-filter: blur(10px);
+  background: linear-gradient(180deg, rgba(18, 20, 20, 0.88), rgba(18, 20, 20, 0.72));
+}
+
+.glow-on-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-on-hover::after {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: radial-gradient(circle, rgba(255, 106, 0, 0.16) 0%, rgba(255, 106, 0, 0) 65%);
+  opacity: 0;
+  transform: scale(0.7);
+  transition: opacity 280ms ease, transform 280ms ease;
+  pointer-events: none;
+}
+
+.glow-on-hover:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes smoothEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
